@@ -5,30 +5,26 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 import { stdout, stdin, exit } from 'process';
 
-const bye = key => {
-	console.log(key);
-	if (key && key.name === 'enter') {
-		console.log('bye bye');
-		process.exit();
-	}
-	// stdout.write('\nbye!\n');
-	// exit();
-};
-
 const write = async () => {
 	const path = join(__dirname, 'files', 'fileToWrite.txt');
 	const writableStream = createWriteStream(path);
 
+	const bye = text => {
+		writableStream.write(text);
+		stdout.write('\nbye!\n');
+		exit();
+	};
+
 	stdout.write('Напиши что нибудь: ');
 
-	stdin.on('data', data => {
-		// if (data.toString().trim() === 'exit') {
-		// 	bye();
-		// }
-		writableStream.write(data);
-	});
+	let text = '';
 
-	process.on('keypress', bye);
+	stdin.on('data', data => {
+		text += data.toString();
+		if (text.length > 5) {
+			bye(text);
+		}
+	});
 };
 
 await write();
