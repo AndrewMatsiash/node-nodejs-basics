@@ -6,9 +6,12 @@ const __dirname = dirname(__filename);
 
 const rename = async () => {
 	try {
-		fs.rename(path.join(__dirname, 'files', 'wrongFilename.txt'), path.join(__dirname, 'files', 'properFilename.md'));
+		await fs.rename(
+			path.join(__dirname, 'files', 'wrongFilename.txt'),
+			path.join(__dirname, 'files', 'properFilename.md')
+		);
 	} catch {
-		console.error('Error FS operation failed');
+		throw Error('Error FS operation failed');
 	}
 };
 

@@ -9,7 +9,7 @@ const list = async () => {
 		const files = await readdir(__dirname);
 		console.log(files);
 	} catch {
-		console.log('Error FS operation failed');
+		throw Error('Error FS operation failed');
 	}
 };
 

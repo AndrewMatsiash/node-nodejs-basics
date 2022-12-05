@@ -8,7 +8,7 @@ const remove = async () => {
 	try {
 		await fs.unlink(path.join(__dirname, 'files', 'fileToRemove.txt'));
 	} catch {
-		console.log('Error FS operation failed');
+		throw Error('Error FS operation failed');
 	}
 };
 

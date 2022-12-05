@@ -9,7 +9,7 @@ const read = async () => {
 		const text = await readFile(join(__dirname, 'files', 'fileToRead.txt'), 'utf-8');
 		console.log(text);
 	} catch {
-		console.error('Error FS operation failed');
+		throw Error('Error FS operation failed');
 	}
 };
 

@@ -16,7 +16,7 @@ const copy = async () => {
 			copyFile(join(homePath, file.name), join(destPath, file.name));
 		});
 	} catch {
-		console.error('Error FS operation failed');
+		throw Error('Error FS operation failed');
 	}
 };
 
